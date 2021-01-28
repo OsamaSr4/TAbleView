@@ -1,0 +1,85 @@
+{
+  "Detail": [
+    {
+      "pid": 1,
+      "luggageName": "Luggage",
+      "productName": {
+        "Hand luggage": 0,
+        "Suit Case": 0,
+        "BackPack": 0
+      },
+      "isExpendebale": false
+    },
+    {
+      "pid": 2,
+      "luggageName": "Boxes",
+      "productName": {
+        "Small Box": 0,
+        "Medium Box": 0,
+        "Large Box": 0,
+        "XL Box": 0
+      },
+      "isExpendebale": false
+    },
+    {
+      "pid": 3,
+      "luggageName": "Luggage",
+      "productName": {
+        "Childs Pram's": 0,
+        "Child's Foldable Pushchair": 0
+      },
+      "isExpendebale": false
+    },
+    {
+      "pid": 4,
+      "luggageName": "Luggage",
+      "productName": {
+        "Folded WheelChair": 0
+      },
+      "isExpendebale": false
+    },
+    {
+      "pid": 5,
+      "luggageName": "Luggage",
+      "productName": {
+        "TV (less than 30 inches)": 0,
+        "TV (30 to 60 inches)": 0,
+        "Ironing board": 0,
+        "Music speaker (Large)": 0,
+        "Mirror (upto 60x36 inches)": 0,
+        "Chest of drawers": 0,
+        "Rug (upto 24x84 inches)": 0,
+        "Single Mattress": 0,
+        "Bedside table (45x55cm)": 0,
+        "Microwave oven": 0,
+        "Vacuum cleaner": 0,
+        "TV stand": 0,
+        "Large musical instrument case (upto 60x24 inches)": 0
+      },
+      "isExpendebale": false
+    },
+    {
+      "pid": 6,
+      "luggageName": "Luggage",
+      "productName": {
+        "Tent": 0,
+        "Large Rucksack": 0,
+        "Pair of skis": 0,
+        "Snowboard": 0,
+        "Bike": 0,
+        "Bike box": 0,
+        "Golf bag": 0
+      },
+      "isExpendebale": false
+    },
+    {
+      "pid": 7,
+      "luggageName": "Luggage",
+      "productName": {
+        "Small Pet (in cage)": 0,
+        "Large Dog": 0
+      },
+      "isExpendebale": false
+    }
+  ]
+}
