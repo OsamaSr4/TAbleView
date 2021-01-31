@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Sections: Codable {
+class Sections {
     let sections : [Section]
 
     init(sections : [Section]) {
@@ -18,17 +18,17 @@ class Sections: Codable {
 
 
 
-struct Section : Codable {
+struct Section  {
         
      var pid : Int
-     var productQty : Int
+    var productQty : [String:Int]
      var category: String
-    var productName: [Int:String]
+    var productName: [String]
      var subtitle : String
      var isExpendebale : Bool!
      
     
-    init(pid :Int , luggageName: String, NoofItem: [Int: String], subtitle : String, isExpendebale : Bool, productQty: Int ) {
+    init(pid :Int , luggageName: String, NoofItem: [String], subtitle : String, isExpendebale : Bool, productQty: [String:Int] ) {
         
         self.pid = pid
         self.productQty = productQty

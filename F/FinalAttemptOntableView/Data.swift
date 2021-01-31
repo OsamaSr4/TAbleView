@@ -9,99 +9,138 @@
 import Foundation
 
 var sections = [
-    
+
     Section(
         pid : 1,
         luggageName:"Luggage",
         NoofItem:[
-            1:"Hand luggage",
-            2:"Suit Case",
-            3:"BackPack"
+            "Hand luggage",
+            "Suit Case",
+            "BackPack"
         ],
         subtitle:"Please Select an Item to add" ,
         isExpendebale: false,
-        productQty: 0),
+        productQty: [
+            "Hand luggage":0,
+            "Suit Case":0,
+            "BackPack":0
+    ]),
+    
+   Section(
+    pid : 5,
+    luggageName:"Household Items",
+    NoofItem:[
+              "TV (less than 30 inches)",
+              "TV (30 to 60 inches)",
+              "Ironing board",
+              "Music speaker (Large)",
+              "Mirror (upto 60x36 inches)",
+              "Chest of drawers",
+              "Rug (upto 24x84 inches)",
+              "Single Mattress",
+              "Bedside table ",
+              "Microwave oven",
+              "Vacuum cleaner",
+              "TV stand",
+              "Large musical instrument"
+    ],
+    subtitle: "Please Select an Item to add",
+    isExpendebale: false,
+    productQty: [
+        "TV (less than 30 inches)":0,
+        "TV (30 to 60 inches)":0,
+        "Ironing board":0,
+        "Music speaker (Large)":0,
+        "Mirror (upto 60x36 inches)":0,
+        "Chest of drawers":0,
+        "Rug (upto 24x84 inches)":0,
+        "Single Mattress":0,
+        "Bedside table ":0,
+        "Microwave oven":0,
+        "Vacuum cleaner":0,
+        "TV stand":0,
+        "Large musical instrument":0
+    ]),
    
    Section(
     pid : 2,
     luggageName:"Boxes",
     NoofItem:[
-        4:"Small Box",
-    5:"Medium Box",
-        6:"Large Box",
-        7:"XL Box"
+      "Small Box",
+        "Medium Box",
+        "Large Box",
+        "XL Box"
         ],
     subtitle: "Please Select an Item to add",
     isExpendebale:false ,
-    productQty: 0),
+    productQty: [
+        "Small Box":0,
+        "Medium Box":0,
+        "Large Box":0,
+        "XL Box":0
+      ]),
    
    Section(
     pid : 3,
     luggageName:"Child Items",
     NoofItem:[
-        8:"Childs Pram's",
-        9:"Child's Foldable Pushchair"
+        "Childs Pram's",
+               "Child's Foldable Pushchair"
         ],
     subtitle:"Please Select an Item to add" ,
     isExpendebale:false ,
-    productQty: 0),
+    productQty: [
+        "Childs Pram's":0,
+        "Child's Foldable Pushchair":0
+    ]),
    
    Section(
     pid : 4,
     luggageName:"Folded WheelChair",
     NoofItem:[
-        10:"Folded WheelChair"
+        "Folded WheelChair"
     ],
     subtitle: "Please Select an Item to add",
     isExpendebale: false ,
-    productQty: 0),
-   
-   Section(
-    pid : 5,
-    luggageName:"Household Items",
-    NoofItem:[
-              11:"TV (less than 30 inches)",
-              12:"TV (30 to 60 inches)",
-              13:"Ironing board",
-              14:"Music speaker (Large)",
-              15:"Mirror (upto 60x36 inches)",
-              16:"Chest of drawers",
-              17:"Rug (upto 24x84 inches)",
-              18:"Single Mattress",
-              19:"Bedside table (45x55cm)",
-              20:"Microwave oven",
-              21:"Vacuum cleaner",
-              22:"TV stand",
-              23:"Large musical instrument case (upto 60x24 inches)"
-    ],
-    subtitle: "Please Select an Item to add",
-    isExpendebale: false,
-    productQty: 0),
+    productQty:[
+        "Folded WheelChair":0
+    ]),
    
    Section(
     pid : 6,
     luggageName:"Outdoor Items",
     NoofItem: [
-        24:"Tent",
-        25:"Large Rucksack",
-        26:"Pair of skis",
-        27:"Snowboard",
-        28:"Bike",
-        29:"Bike box",
-        30:"Golf bag"
+        "Tent",
+        "Large Rucksack",
+        "Pair of skis",
+        "Snowboard",
+        "Bike",
+        "Bike box",
+        "Golf bag"
     ],
     subtitle: "Please Select an Item to add",
     isExpendebale: false,
-    productQty: 0),
+    productQty: [
+        "Tent":0,
+        "Large Rucksack":0,
+        "Pair of skis":0,
+        "Snowboard":0,
+        "Bike":0,
+        "Bike box":0,
+        "Golf bag":0
+    ]),
    
    Section(
     pid : 7,
     luggageName:"Pets",
     NoofItem: [
-        31:"Small Pet (in cage)",
-         32:"Large Dog"
+         "Small Pet (in cage)",
+        "Large Dog"
         ],
     subtitle: "Please Select an Item to add",
     isExpendebale: false,
-    productQty: 0 )
+    productQty: [
+        "Small Pet (in cage)":0,
+        "Large Dog":0
+    ] )
 ]

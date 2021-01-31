@@ -9,6 +9,7 @@
 import UIKit
 
 
+
 class itemss : UITableViewCell {
     
     
@@ -25,44 +26,32 @@ class itemss : UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)}
+    
            
 }
 
 
-class RowViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,ExpandableHeaderViewDelegate{
+class RowViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,ExpandableHeaderViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate{
+    
      
     @IBOutlet var tableView: UITableView!
-    @IBOutlet var totalitems: UILabel!
+
+    @IBOutlet var collectionViews: UICollectionView!
+    
     
     
     var selectIndexPath : IndexPath!
-    var CartArray : [[String: String]] = []
-    var itemsArray : [[String: AnyObject]] = []
     var product : [String:String] = [:]
-    
+    var aQuntity : Float = 0
     
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.Plist")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.downloadJsonWithURL()
+        
         selectIndexPath = IndexPath(row: -1, section: -1)
         let nib = UINib(nibName: "ExpandableHeaderView", bundle: nil)
         tableView.register(nib, forHeaderFooterViewReuseIdentifier: "expandableHeaderView")
-    }
-    func downloadJsonWithURL() {
-        guard let path = Bundle.main.path(forResource: "generated", ofType: ".json") else {return}
-        let url = URL(fileURLWithPath: path)
-        URLSession.shared.dataTask(with: (url), completionHandler: {(data, response, error) -> Void in
-            if let jsonObj = try? JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary {
-                
-                self.itemsArray = (jsonObj.value(forKey: "Detail") as? [[String: AnyObject]])!
-               // print(self.itemsArray)
-                OperationQueue.main.addOperation({
-                    self.tableView.reloadData()
-                })
-            }
-        }).resume()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -92,76 +81,89 @@ class RowViewController: UIViewController,UITableViewDataSource,UITableViewDeleg
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell", for: indexPath) as? itemss
-        //let sec = itemsArray[indexPath.section]
-       // let arr = itemsArray[indexPath.section]
-//
-        let aQuntity : Float = 0
-//        let itemId : Int =  arr["pid"] as! Int
-//        for aDic in CartArray{
-//            if aDic["id"] == String(itemId){
-//               aQuntity = Float(String(aDic["quantity"]!))!
-//            }
-//        }
-        
-        cell!.countStepper.value = Double(Int(aQuntity))
-        cell!.countStepper.tag = indexPath.row
-        cell?.superview?.tag = indexPath.section
-        cell!.countStepper.addTarget(self, action: #selector(stepperAction), for: .valueChanged)
+       
+       
+        cell?.countStepper.value = Double(Int(aQuntity))
+        cell?.countStepper?.tag = (indexPath.section * 13) + indexPath.row
+        //cell?.contentView.superview?.tag = indexPath.section
+        cell?.countStepper.addTarget(self, action: #selector(stepperAction), for: .valueChanged)
         cell!.itemsLabel.text = String(aQuntity)
-        totalitems.text = String(aQuntity )
+        cell?.textLabel?.text = sections[indexPath.section].productName[indexPath.row]
+        let cellc = collectionViews.cellForItem(at: indexPath )
+        cellc?.reloadInputViews()
+//        for data in product {
+//           //let key = data.key //key value which is colour or fabric
+//           //let value = data.value //value which would be moss green or cotton
+//           // itemsLabel.text = String(key + " x\( value)")
+//        }
         return cell!
-        
     }
+    
 func toggleSection(header: ExpandableHeaderView, section: Int) {
         sections[section].isExpendebale = !sections[section].isExpendebale
         tableView.beginUpdates()
-       // self.saveItems()
         tableView.endUpdates()
     }
     
+    @objc func stepperAction(_ sender: UIStepper) {
+    let row : Int = sender.tag % 13
+    let  sec : Int = sender.tag / 13
+    //print(sec,row)
     
-@objc func stepperAction(_ sender: UIStepper) {
-    let index : Int = sender.tag
-    let  sec : Int = sender.superview!.tag
-    print(sec)
-    
-    let arr = itemsArray[index]
-    //print (arr)
-    // let ar = arr["productName"] as! [Dictionary<String, String>]
-   //print(ar)
-    //let ketarray = ar.map {Array($0.keys)[0]}
-   // print(ketarray)
-  
- 
-    
-       // print(arr)
-    let cell = tableView.cellForRow(at: IndexPath(row: index, section: sec) ) as! itemss
-
-                    let value = Float(sender.value)
-                     cell.itemsLabel.text = String(value)
-    
-    
-    let itemId : Int = (arr["pid"]) as! Int
-   // print(itemId)
-    //let itemnum : Int = 0
-        var aFoundIndex : Int?
-        var counter : Int = 0
+    let cell = tableView.cellForRow(at: IndexPath(row: row, section: sec) ) as! itemss
         
-        _ = CartArray.filter { (aDic) -> Bool in
-            if aDic["id"] == String(itemId) {
-            aFoundIndex = counter
-            }
-            counter += 1
-            return false
-        }
-        
-        if(aFoundIndex != nil){
-        CartArray.remove(at: aFoundIndex!)
-        }
-
-        CartArray.append(["quantity" : String(value),"id" : String(itemId)])
-        //print(CartArray)
-      }
-
-
+    if sec == 0 {
+        sender.maximumValue = 8
+    }
+    else if sec == 1 {
+        sender.maximumValue = 4
+    }
+    else if sec == 2 && row == 1 || row == 0{
+        sender.maximumValue = 3
+    }
+    else if sec == 3 {
+        sender.maximumValue = 3
+    }
+    else if sec == 4 {
+        sender.maximumValue = 3
+    }
+    else if sec == 5 {
+        sender.maximumValue = 4
+    }
+    else if sec == 6 {
+    sender.maximumValue = 4
+    }
+    if cell.textLabel!.text == sections[sec].productName[row]{
+        product.updateValue(String(Int(sender.value)), forKey: (cell.textLabel?.text)!)
+        print(product)
+    }
+    let value = Float(sender.value)
+    cell.itemsLabel.text = String(value)
+    collectionViews.self .reloadData()
+    }
+    
+    
+func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+   
+    return product.count
+    
 }
+       
+func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let collectioncell = (collectionViews.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ItemsCollectionViewCell)!
+    let arr = [product]
+    print (indexPath.row)
+    for data in product {
+                             let key = data.key //key value which is colour or fabric
+                             let value = data.value //value which would be moss green or cotton
+            collectioncell.NameOfItems.text = String (key)
+            collectioncell.QuantityOfItems.text = String(value)
+            print(collectioncell.QuantityOfItems! as Any , collectioncell.NameOfItems! as Any)
+                }
+           return collectioncell
+        
+       }
+}
+
+
+
