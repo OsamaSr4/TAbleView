@@ -17,7 +17,7 @@ class ViewController: UIViewController , UITableViewDataSource , UITableViewDele
     
     
     override func viewDidLoad() {
-        //print(dataFilePath)
+        
         super.viewDidLoad()
         
         loadData()

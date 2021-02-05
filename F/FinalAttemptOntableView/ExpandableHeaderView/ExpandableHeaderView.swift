@@ -21,11 +21,16 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
     
     @IBOutlet weak var LuggageNametitle: UILabel!
     @IBOutlet weak var SubTitle: UILabel!
+    
+    @IBOutlet var arrowIcon: UIImageView!
+    
+    func common() {
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectHeaderView)))
+    }
  
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectHeaderView)))
-    
     }
     
     required init?(coder : NSCoder) {
@@ -36,7 +41,6 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
     @objc func selectHeaderView(gesture: UITapGestureRecognizer)  {
         let cell  = gesture.view as! ExpandableHeaderView
         delegate?.toggleSection(header: self, section: cell.section)
-        
     }
     
     func custominit(title : String , subtitle : String , section : Int , delegate: ExpandableHeaderViewDelegate ) {
@@ -51,9 +55,15 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
         self.LuggageNametitle?.textColor = UIColor.white
         self.SubTitle?.textColor = UIColor.white
         self.SubTitle?.alpha =  0.7
-        self.contentView.backgroundColor = UIColor.darkGray
-        
-        
+        self.contentView.backgroundColor = UIColor.lightGray
+    }
+    
+    func openArrow() {
+        self.arrowIcon.image = #imageLiteral(resourceName: "upArrow")
+    }
+    
+    func closeArrow() {
+        self.arrowIcon.image = #imageLiteral(resourceName: "downArrow")
     }
  
  }
